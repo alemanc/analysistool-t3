@@ -1,0 +1,21 @@
+%h1.title POIs visitadas
+
+
+%table#table
+  %thead
+    %tr
+      %th POI visitada en la ruta
+      %th Latitud
+      %th Longitud
+  %tbody
+    - @convergencia.each do |poi|
+      %tr
+        %td= poi["name"]
+        %td= poi["latitude"]
+        %td= poi["longitude"]
+
+
+
+= javascript_include_tag '/assets/maps/OpenLayers'
+= javascript_include_tag '/assets/maps/locations'
+

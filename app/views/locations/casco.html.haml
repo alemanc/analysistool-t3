@@ -1,0 +1,24 @@
+%h1.title Coordenadas del casco convexo
+
+%strong{:class => "code", :id => "title"} Coordenadas del casco convexo ordenadas en contra de las manecillas del reloj
+
+%table#table
+  %thead
+    %tr
+      %th Name
+      %th Latitude
+      %th Longitude
+
+  %tbody
+    - @hullPoints.each do |location|
+      %tr
+        %td= location["name"]
+        %td= location["latitude"]
+        %td= location["longitude"]
+
+
+%p= show_flash
+
+-var = @perimetro
+Perimetro en metros:
+= var.inspect

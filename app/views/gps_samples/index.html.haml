@@ -1,0 +1,10 @@
+
+%p Guardar ruta desde json (2A)
+%p La ruta que aparecera en el mapa es la del usuario insertado como adjunto en este formulario
+%p La ruta en cada json adjuntado por usuario solo se inserta una vez en la base de datos
+
+=form_tag ruta_gps_samples_path, :multipart => true do
+  = file_field_tag :file
+  = submit_tag "Send .json file"
+
+

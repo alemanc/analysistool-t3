@@ -1,0 +1,15 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: analysistool_development
+  pool: 5
+  username: Solrac
+  password: solracAir
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: analysistool_test
+  pool: 5
+  username: Solrac
+  password: solracAir

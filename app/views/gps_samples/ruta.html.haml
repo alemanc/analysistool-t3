@@ -1,0 +1,38 @@
+Datos agregados correctamente
+
+%h1.title Tabla de ruta de usuarios
+
+.map
+  %div#map
+
+
+%input#locations{:type => "hidden", :value => @locations_json}
+
+
+%table#table
+  %thead
+    %tr
+      %th User name
+      %th Latitude
+      %th Longitude
+      %th Timestamp
+  %tbody
+    - @locations.each do |location|
+      %tr
+        %td= location.user_id
+        %td= location.latitude
+        %td= location.longitude
+        %td= location.timestamp
+
+
+
+%p= show_flash
+
+
+= javascript_include_tag '/assets/maps/OpenLayers'
+= javascript_include_tag '/assets/maps/locations'
+
+:javascript
+  initMap($("#locations").val());
+
+%p= link_to "Regresar", controller: 'gps_samples',action: 'index'

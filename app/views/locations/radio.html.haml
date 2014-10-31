@@ -1,0 +1,39 @@
+%h1.title Llegue a la vista de radio
+
+-lat = @lat.to_f
+-lon = @lon.to_f
+-rad = @rad.to_f
+
+
+%table#table
+  %thead
+    %tr
+      %th Name
+      %th Latitude 1
+      %th Longitude 1
+      %th Radio
+      %th Latitude 2
+      %th Longitude 2
+      %th Inside radio?
+  %tbody
+    - @lugares.each do |location|
+      %tr
+        %td= location["name"]
+        %td= location["latitude"]
+        %td= location["longitude"]
+        %td= rad
+        %td= lat
+        %td= lon
+        %td= location["inside"]
+
+%p= show_flash
+
+
+- #= link_to @hello
+- #= link_to params[:hello], '#'
+- #- var = @hello
+- #-var2 = @x
+- #%strong{:class => "code", :id => "hello"} - @hello
+- #%strong{:class => "code", :id => "hola"}#{var + 'asd'}
+- ##{var}
+- #%strong{:class => "code", :id => "hola"}#{var2 + 3}

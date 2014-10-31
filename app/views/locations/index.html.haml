@@ -1,0 +1,62 @@
+%h1.title All Locations of Interest
+
+.map
+  %div#map
+
+
+
+%input#locations{:type => "hidden", :value => @locations_json}
+
+
+%table#table
+  %thead
+    %tr
+      %th Name
+      %th Latitude
+      %th Longitude
+      %th Description
+      %th
+      %th
+  %tbody
+    - @locations.each do |location|
+      %tr
+        %td= location.name
+        %td= location.latitude
+        %td= location.longitude
+        %td= location.description
+        %td= link_to "Edit", edit_location_path(location)
+        %td= link_to "Delete", location_path(location), :method => :delete, :confirm => 'Are you sure?'
+
+%p= show_flash
+
+
+=form_tag radio_locations_path, :method => :post do
+  = label_tag :title, 'Determina si se encuentra en un radio (1A):'
+  = label :location, :latitude, 'Latitud'
+  = text_field_tag :lat, ''
+  = label :location, :longitude, 'Longitud'
+  = text_field_tag :lon, ''
+  = label :location, :radio, 'Radio'
+  = text_field_tag :rad, ''
+  = submit_tag 'Calcular'
+
+-#%p=link_to "Radio", :type => "hidden", controller:"locations", action:"radio"
+
+%p=link_to "Casco Convexo (1B)", controller:"locations", action:"casco"
+
+%strong Visite POIs en mi ruta? (1C)
+=form_tag ruta_locations_path, :multipart => true do
+  = file_field_tag :file
+  = submit_tag "Send Attachment"
+
+%p=link_to "Go to gps_samples controller (2A - 2B)", controller:"gps_samples", action:"index"
+
+%p=link_to "Create new location", new_location_path
+
+%p=link_to "Delete all", destroy_all_locations_path, :method => :get, :confirm => 'Are you sure?'
+
+= javascript_include_tag '/assets/maps/OpenLayers'
+= javascript_include_tag '/assets/maps/locations'
+
+:javascript
+  initMap($("#locations").val());
